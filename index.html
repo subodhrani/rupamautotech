@@ -8,7 +8,6 @@
   <style>
     :root{
       --bg:#050b14;
-      --bg2:#091427;
       --panel:#0b1930;
       --panel2:#102545;
       --line:rgba(255,255,255,.10);
@@ -20,7 +19,6 @@
       --success:#25d366;
       --danger:#ff6b6b;
       --shadow:0 24px 80px rgba(0,0,0,.45);
-      --radius:24px;
       --max:1240px;
     }
     *{box-sizing:border-box}
@@ -31,7 +29,7 @@
       color:var(--text);
       background:
         radial-gradient(circle at 85% 12%, rgba(79,141,255,.18), transparent 20%),
-        radial-gradient(circle at 12% 22%, rgba(242,179,33,.09), transparent 18%),
+        radial-gradient(circle at 12% 22%, rgba(242,179,33,.08), transparent 18%),
         linear-gradient(180deg, #040912 0%, #07101d 100%);
       line-height:1.5;
       overflow-x:hidden;
@@ -40,9 +38,10 @@
     img{display:block;max-width:100%}
     button{font:inherit}
     .container{width:min(var(--max), calc(100% - 40px));margin:0 auto}
+
     .nav{
       position:fixed;top:0;left:0;right:0;z-index:120;
-      background:rgba(4,9,18,.78);
+      background:rgba(4,9,18,.82);
       backdrop-filter:blur(18px);
       border-bottom:1px solid var(--line);
     }
@@ -54,7 +53,7 @@
     .mark{
       width:50px;height:50px;border-radius:18px;
       background:linear-gradient(135deg,var(--brand2),var(--brand));
-      display:grid;place-items:center;font-weight:800;letter-spacing:.5px;
+      display:grid;place-items:center;font-weight:800;
       box-shadow:0 10px 30px rgba(79,141,255,.35);
       flex:0 0 auto;
     }
@@ -75,41 +74,22 @@
     }
 
     .menu-toggle{
-      display:none;
-      width:46px;height:46px;
-      border-radius:14px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      color:#fff;
-      align-items:center;justify-content:center;
-      cursor:pointer;
-      font-size:22px;
-      flex:0 0 auto;
+      display:none;width:46px;height:46px;border-radius:14px;
+      border:1px solid var(--line);background:rgba(255,255,255,.04);
+      color:#fff;align-items:center;justify-content:center;cursor:pointer;font-size:22px;
     }
-
-    .mobile-menu{
-      display:none;
-      border-top:1px solid var(--line);
-      background:rgba(5,11,20,.96);
-    }
+    .mobile-menu{display:none;border-top:1px solid var(--line);background:rgba(5,11,20,.96)}
     .mobile-menu.open{display:block}
     .mobile-menu-inner{
       width:min(var(--max), calc(100% - 40px));
-      margin:0 auto;
-      padding:14px 0 18px;
-      display:grid;gap:10px;
+      margin:0 auto;padding:14px 0 18px;display:grid;gap:10px;
     }
     .mobile-link{
-      padding:14px 16px;
-      border-radius:14px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      color:#e6eef9;
+      padding:14px 16px;border-radius:14px;border:1px solid var(--line);
+      background:rgba(255,255,255,.04);color:#e6eef9;
     }
     .mobile-link.active{background:rgba(79,141,255,.16);border-color:rgba(79,141,255,.28)}
-    .mobile-actions{
-      display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px;
-    }
+    .mobile-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 
     .page{display:none}
     .page.active{display:block}
@@ -119,9 +99,8 @@
       padding-top:90px;overflow:hidden;
     }
     .hero:before{
-      content:"";position:absolute;inset:0;
-      background:linear-gradient(90deg, rgba(5,11,20,.92) 0%, rgba(5,11,20,.77) 42%, rgba(5,11,20,.28) 72%, rgba(5,11,20,.46) 100%);
-      z-index:1;
+      content:"";position:absolute;inset:0;z-index:1;
+      background:linear-gradient(90deg, rgba(5,11,20,.92) 0%, rgba(5,11,20,.78) 42%, rgba(5,11,20,.28) 72%, rgba(5,11,20,.46) 100%);
     }
     .hero-bg{
       position:absolute;inset:0;
@@ -163,14 +142,12 @@
       border:none;background:linear-gradient(135deg,var(--brand2),var(--brand));
       box-shadow:0 16px 34px rgba(31,79,163,.28);
     }
-    .hero-stats,.tiles,.products,.cards{
-      display:grid;gap:18px;
-    }
+
+    .hero-stats,.tiles,.products,.cards{display:grid;gap:18px}
     .hero-stats{grid-template-columns:repeat(3,1fr);max-width:780px}
     .stat,.tile,.product,.catalog-item,.panel{
       border:1px solid rgba(255,255,255,.12);
-      border-radius:20px;
-      box-shadow:var(--shadow);
+      border-radius:20px;box-shadow:var(--shadow);
     }
     .stat,.tile,.product{
       background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03));
@@ -178,6 +155,7 @@
     }
     .stat strong{display:block;font-size:24px;margin-bottom:6px}
     .stat span,.tile p,.product p,.panel p{color:var(--muted)}
+
     .hero-side{display:grid;gap:18px;justify-self:end;width:min(460px,100%)}
     .glass{
       background:linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
@@ -205,10 +183,7 @@
     .kicker{text-transform:uppercase;letter-spacing:.16em;color:#91b2ff;font-size:12px;display:block;margin-bottom:12px}
 
     .story,.contact-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:22px}
-    .panel{
-      background:linear-gradient(180deg,var(--panel),var(--panel2));
-      padding:30px;
-    }
+    .panel{background:linear-gradient(180deg,var(--panel),var(--panel2));padding:30px}
     .list{display:grid;gap:12px;margin-top:18px}
     .list div{display:flex;gap:12px;align-items:flex-start;color:#dce7f7}
     .list b{
@@ -225,9 +200,7 @@
       background:rgba(79,141,255,.14);color:#a7c5ff;font-size:12px;font-weight:700;margin-bottom:14px;
     }
 
-    .catalog-item{
-      overflow:hidden;background:#0b1524;
-    }
+    .catalog-item{overflow:hidden;background:#0b1524}
     .catalog-item img{width:100%;height:320px;object-fit:cover}
     .catalog-copy{padding:20px}
     .catalog-copy h3{margin:0 0 8px}
@@ -249,10 +222,6 @@
       background:linear-gradient(135deg,var(--accent),#ffd66a);
       color:#111;font-weight:800;cursor:pointer;
     }
-    .note{
-      font-size:13px;color:#bcd0eb;background:rgba(79,141,255,.08);
-      border:1px solid rgba(79,141,255,.18);padding:12px 14px;border-radius:14px;
-    }
     .success,.error{
       display:none;padding:14px 16px;border-radius:14px;font-size:14px;
     }
@@ -263,7 +232,6 @@
       padding:30px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:14px;
     }
     .footer-grid{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-
     .whatsapp{
       position:fixed;right:20px;bottom:20px;z-index:100;
       width:62px;height:62px;border-radius:50%;display:grid;place-items:center;
@@ -353,7 +321,7 @@
             <h1>Precision tooling for modern manufacturing.</h1>
             <p class="lead">
               Rupam Autotech provides premium CNC, VMC and HMC tooling solutions with strong focus on accuracy, durability and output.
-              High precision boring systems, clamp systems, end mills, face milling and cutting tools — all presented in a modern enterprise-style website experience.
+              High precision boring systems, clamp systems, end mills, face milling and cutting tools for modern machining needs.
             </p>
             <div class="hero-actions">
               <button class="btn primary" data-nav="products">Explore Products</button>
@@ -369,18 +337,46 @@
           <div class="hero-side fade-up">
             <div class="glass feature-card">
               <h3>Trusted industrial partner</h3>
-              <p>Deals in all kinds of CNC, VMC &amp; HMC tooling, carbide end mill and brazed cutting tools.</p>
+              <p>All kinds of CNC, VMC &amp; HMC tooling, carbide end mills and brazed cutting tools.</p>
               <div class="feature-list">
-                <div>High Precision / हाई प्रिसिजन</div>
+                <div>High Precision</div>
                 <div>Strong Clamping &amp; Stable Performance</div>
                 <div>Maximum Productivity &amp; Long Tool Life</div>
               </div>
             </div>
             <div class="glass mini-gallery">
-              <img src="images/milling.jpeg" alt="Product brochure 1" />
-              <img src="images/clamp.jpeg" alt="Product brochure 2" />
-              <img src="images/boring.jpeg" alt="Product brochure 3" />
-              <img src="images/hero-cover.jpeg" alt="Product brochure 4" />
+              <img src="images/milling.jpeg" alt="Milling tooling brochure" />
+              <img src="images/clamp.jpeg" alt="Clamp system brochure" />
+              <img src="images/boring.jpeg" alt="Boring system brochure" />
+              <img src="images/hero-cover.jpeg" alt="Rupam Autotech cover brochure" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="head fade-up">
+            <div>
+              <span class="kicker">Why Rupam Autotech</span>
+              <h2>Reliable tooling solutions built for precision and performance.</h2>
+            </div>
+            <p>
+              We help machining businesses with quality tooling, quick response and dependable product support across multiple industrial applications.
+            </p>
+          </div>
+          <div class="tiles">
+            <div class="tile fade-up">
+              <h3>CNC Tooling</h3>
+              <p>Reliable tooling solutions for modern CNC machining operations.</p>
+            </div>
+            <div class="tile fade-up">
+              <h3>VMC Tooling</h3>
+              <p>Performance-driven tooling support for vertical machining workflows.</p>
+            </div>
+            <div class="tile fade-up">
+              <h3>HMC Tooling</h3>
+              <p>Industrial-grade tooling categories aligned with demanding production needs.</p>
             </div>
           </div>
         </div>
@@ -395,7 +391,9 @@
               <span class="kicker">About</span>
               <h2>Industrial capability with business credibility.</h2>
             </div>
-            <p>Rupam Autotech ko is website mein ek trusted industrial tooling brand ke roop mein position kiya gaya hai.</p>
+            <p>
+              Rupam Autotech is positioned as a trusted industrial tooling brand focused on quality, precision and practical customer support.
+            </p>
           </div>
         </div>
       </div>
@@ -403,11 +401,11 @@
         <div class="container">
           <div class="story">
             <div class="panel fade-up">
-              <p>Company deals in CNC, VMC &amp; HMC tooling, carbide end mills, brazed cutting tools, boring systems, clamp systems and allied machining products.</p>
+              <p>We deal in CNC, VMC &amp; HMC tooling, carbide end mills, brazed cutting tools, boring systems, clamp systems and allied machining products.</p>
               <div class="list">
                 <div><b>✓</b><span>Quality-driven product communication</span></div>
-                <div><b>✓</b><span>Strong visual identity based on brochure assets</span></div>
-                <div><b>✓</b><span>Lead-generation friendly contact flow</span></div>
+                <div><b>✓</b><span>Strong industrial visual identity</span></div>
+                <div><b>✓</b><span>Lead-friendly contact and inquiry flow</span></div>
               </div>
             </div>
             <div class="panel fade-up">
@@ -431,7 +429,7 @@
               <span class="kicker">Products</span>
               <h2>Product families organized for faster discovery.</h2>
             </div>
-            <p>Product page mein key categories ko buyer-friendly format mein organize kiya gaya hai.</p>
+            <p>Explore key tooling categories designed for boring, clamping, milling and machining support.</p>
           </div>
         </div>
       </div>
@@ -455,9 +453,9 @@
           <div class="head fade-up">
             <div>
               <span class="kicker">Catalog</span>
-              <h2>Visual catalog and brochure-led presentation.</h2>
+              <h2>Product visuals and brochure highlights.</h2>
             </div>
-            <p>Brochure-based visual catalog blocks for digital presentation.</p>
+            <p>Browse key brochure visuals that reflect the company’s tooling range and product focus.</p>
           </div>
         </div>
       </div>
@@ -465,19 +463,19 @@
         <div class="container">
           <div class="cards">
             <div class="catalog-item fade-up">
-              <img src="images/hero-cover.jpeg" alt="Main cover catalog" />
-              <div class="catalog-copy"><h3>Main Brand Brochure</h3><p>Primary identity board featuring company overview and tooling range.</p></div>
+              <img src="images/hero-cover.jpeg" alt="Main brand brochure" />
+              <div class="catalog-copy"><h3>Main Brand Brochure</h3><p>Primary company presentation and industrial tooling overview.</p></div>
             </div>
             <div class="catalog-item fade-up">
-              <img src="images/milling.jpeg" alt="Milling catalog" />
+              <img src="images/milling.jpeg" alt="Milling tooling brochure" />
               <div class="catalog-copy"><h3>Milling Solutions</h3><p>Chamfering end mills, end mills, U-drill systems and face milling solutions.</p></div>
             </div>
             <div class="catalog-item fade-up">
-              <img src="images/clamp.jpeg" alt="Clamp catalog" />
+              <img src="images/clamp.jpeg" alt="Clamp system brochure" />
               <div class="catalog-copy"><h3>Clamp Systems</h3><p>A-clamp and B-clamp system variants for strong machining support.</p></div>
             </div>
             <div class="catalog-item fade-up">
-              <img src="images/boring.jpeg" alt="Boring catalog" />
+              <img src="images/boring.jpeg" alt="Boring system brochure" />
               <div class="catalog-copy"><h3>Boring Systems</h3><p>Boring heads, adaptors and micro boring solutions.</p></div>
             </div>
           </div>
@@ -491,9 +489,11 @@
           <div class="head fade-up">
             <div>
               <span class="kicker">Contact</span>
-              <h2>Formspree + WhatsApp inquiry setup.</h2>
+              <h2>Send us your tooling requirement.</h2>
             </div>
-            <p>Is version mein email lead aur WhatsApp inquiry dono ke liye setup ready hai.</p>
+            <p>
+              Share your product requirement and our team will connect with you with the right tooling solution for your machining needs.
+            </p>
           </div>
         </div>
       </div>
@@ -502,14 +502,18 @@
         <div class="container">
           <div class="contact-grid">
             <div class="panel fade-up">
-              <h3 style="margin-top:0;font-size:30px;">How it works</h3>
+              <h3 style="margin-top:0;font-size:30px;">Why contact us</h3>
               <div class="list">
-                <div><b>1</b><span>Form submit hoga to Formspree par lead jayegi</span></div>
-                <div><b>2</b><span>Lead email notification aapke inbox par aa sakti hai</span></div>
-                <div><b>3</b><span>WhatsApp button se same inquiry direct number par bheji ja sakti hai</span></div>
+                <div><b>✓</b><span>Fast response on product inquiries</span></div>
+                <div><b>✓</b><span>Support for CNC, VMC and HMC tooling needs</span></div>
+                <div><b>✓</b><span>Easy communication through email and WhatsApp</span></div>
               </div>
-              <div class="note" style="margin-top:18px;">
-                Formspree URL already added: https://formspree.io/f/xaqggjdb
+
+              <div class="panel" style="margin-top:18px;padding:20px;background:rgba(255,255,255,.03);">
+                <strong style="display:block;margin-bottom:10px;">Get in touch</strong>
+                <p><strong>Phone:</strong> <a href="tel:8130519859">8130519859</a></p>
+                <p><strong>Email:</strong> <a href="mailto:nirbhayyadav0080@gmail.com">nirbhayyadav0080@gmail.com</a></p>
+                <p><strong>Address:</strong> Plot No. E-44, 1st Floor, Shyam Hotel Wali Gali, Sanjay Colony, Sector-24, Faridabad</p>
               </div>
             </div>
 
@@ -540,7 +544,7 @@
     <div class="container footer-grid">
       <div>
         <strong style="display:block;color:#fff;margin-bottom:6px;">Rupam Autotech</strong>
-        <span>Premium mobile-optimized website with Formspree and WhatsApp lead capture.</span>
+        <span>Premium website for CNC, VMC and HMC tooling solutions.</span>
       </div>
       <div>
         <span>Lead email: subodh13@zohomail.in | WhatsApp: 9923456132</span>
@@ -570,7 +574,6 @@
     function closeMobileMenu(){
       mobileMenu.classList.remove('open');
       menuToggle.textContent = '☰';
-      menuToggle.setAttribute('aria-label', 'Open menu');
     }
 
     function showPage(pageId){
@@ -595,7 +598,6 @@
     menuToggle.addEventListener('click', function(){
       const isOpen = mobileMenu.classList.toggle('open');
       menuToggle.textContent = isOpen ? '✕' : '☰';
-      menuToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
     });
 
     const observer = new IntersectionObserver((entries)=>{
