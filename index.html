@@ -1,0 +1,580 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rupam Autotech | CNC, VMC, HMC Tooling Solutions</title>
+  <style>
+    :root{
+      --bg:#050b14;
+      --bg2:#091427;
+      --panel:#0b1930;
+      --panel2:#102545;
+      --line:rgba(255,255,255,.10);
+      --text:#f5f8fd;
+      --muted:#adc0da;
+      --brand:#1f4fa3;
+      --brand2:#4f8dff;
+      --accent:#f2b321;
+      --success:#25d366;
+      --danger:#ff6b6b;
+      --shadow:0 24px 80px rgba(0,0,0,.45);
+      --radius:24px;
+      --max:1240px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 85% 12%, rgba(79,141,255,.18), transparent 20%),
+        radial-gradient(circle at 12% 22%, rgba(242,179,33,.09), transparent 18%),
+        linear-gradient(180deg, #040912 0%, #07101d 100%);
+      line-height:1.5;
+      overflow-x:hidden;
+    }
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+    .container{width:min(var(--max), calc(100% - 40px));margin:0 auto}
+    .nav{
+      position:fixed;top:0;left:0;right:0;z-index:90;
+      background:rgba(4,9,18,.72);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{
+      min-height:78px;
+      display:flex;align-items:center;justify-content:space-between;gap:20px;
+    }
+    .brand{display:flex;align-items:center;gap:14px}
+    .mark{
+      width:50px;height:50px;border-radius:18px;
+      background:linear-gradient(135deg,var(--brand2),var(--brand));
+      display:grid;place-items:center;font-weight:800;letter-spacing:.5px;
+      box-shadow:0 10px 30px rgba(79,141,255,.35);
+    }
+    .brand h3{margin:0;font-size:20px}
+    .brand span{display:block;color:var(--muted);font-size:12px}
+    .nav-links{display:flex;gap:22px;color:var(--muted);font-size:14px}
+    .nav-links a:hover,.nav-links a.active{color:#fff}
+    .nav-actions{display:flex;gap:12px;align-items:center}
+    .pill{
+      padding:12px 18px;border-radius:999px;
+      border:1px solid var(--line);
+      font-weight:700;
+    }
+    .pill.primary{
+      border:none;color:#09111f;
+      background:linear-gradient(135deg,var(--accent),#ffd66a);
+      box-shadow:0 14px 26px rgba(242,179,33,.22);
+    }
+
+    .page{display:none}
+    .page.active{display:block}
+
+    .hero{
+      position:relative;min-height:100vh;display:flex;align-items:center;
+      padding-top:90px;overflow:hidden;
+    }
+    .hero:before{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(90deg, rgba(5,11,20,.92) 0%, rgba(5,11,20,.77) 42%, rgba(5,11,20,.28) 72%, rgba(5,11,20,.46) 100%);
+      z-index:1;
+    }
+    .hero-bg{
+      position:absolute;inset:0;
+      background-image:url('https://ebay-be.glean.com/api/v1/downloadchatfile/f9c476a5aa1d4aac96619470406a30a2');
+      background-size:cover;background-position:center;
+      transform:scale(1.03);
+    }
+    .hero-grid{
+      position:relative;z-index:2;
+      display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;width:100%;
+    }
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 14px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:#dbe7f8;font-size:13px;margin-bottom:20px;
+    }
+    .eyebrow:before{
+      content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);
+      box-shadow:0 0 0 6px rgba(242,179,33,.12);
+    }
+    h1{
+      margin:0 0 18px;
+      font-size:clamp(42px,6vw,82px);
+      line-height:.95;letter-spacing:-2px;max-width:10.5ch;
+    }
+    .lead{
+      color:#d0dced;font-size:clamp(17px,2vw,22px);
+      max-width:58ch;margin-bottom:28px;
+    }
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:28px}
+    .btn{
+      padding:15px 22px;border-radius:999px;border:1px solid var(--line);
+      font-weight:700;display:inline-flex;align-items:center;gap:10px;
+      background:rgba(255,255,255,.04);cursor:pointer;
+    }
+    .btn.primary{
+      border:none;background:linear-gradient(135deg,var(--brand2),var(--brand));
+      box-shadow:0 16px 34px rgba(31,79,163,.28);
+    }
+    .hero-stats,.tiles,.products,.cards{
+      display:grid;gap:18px;
+    }
+    .hero-stats{grid-template-columns:repeat(3,1fr);max-width:780px}
+    .stat,.tile,.product,.catalog-item,.panel{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:20px;
+      box-shadow:var(--shadow);
+    }
+    .stat,.tile,.product{
+      background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03));
+      padding:20px;
+    }
+    .stat strong{display:block;font-size:24px;margin-bottom:6px}
+    .stat span,.tile p,.product p,.panel p{color:var(--muted)}
+    .hero-side{display:grid;gap:18px;justify-self:end;width:min(460px,100%)}
+    .glass{
+      background:linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.14);
+      backdrop-filter:blur(16px);
+      border-radius:28px;box-shadow:var(--shadow);overflow:hidden;
+    }
+    .feature-card{padding:24px}
+    .feature-card h3{margin:0 0 10px;font-size:28px}
+    .feature-list{display:grid;gap:12px;margin-top:18px}
+    .feature-list div{
+      padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);color:#dfe8f7;
+    }
+    .mini-gallery{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px}
+    .mini-gallery img{height:160px;width:100%;object-fit:cover;border-radius:18px}
+
+    .section{padding:92px 0}
+    .subpage-hero{padding:130px 0 40px}
+    .head{
+      display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;align-items:end;margin-bottom:28px;
+    }
+    .head h2{margin:0;font-size:clamp(30px,4vw,52px);line-height:1;letter-spacing:-1px}
+    .head p{margin:0;color:var(--muted);font-size:18px;max-width:62ch}
+    .kicker{text-transform:uppercase;letter-spacing:.16em;color:#91b2ff;font-size:12px;display:block;margin-bottom:12px}
+
+    .story,.contact-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:22px}
+    .panel{
+      background:linear-gradient(180deg,var(--panel),var(--panel2));
+      padding:30px;
+    }
+    .list{display:grid;gap:12px;margin-top:18px}
+    .list div{display:flex;gap:12px;align-items:flex-start;color:#dce7f7}
+    .list b{
+      width:26px;height:26px;border-radius:50%;display:grid;place-items:center;
+      background:rgba(79,141,255,.18);color:#9dc1ff;flex:0 0 auto;
+    }
+
+    .tiles{grid-template-columns:repeat(3,1fr)}
+    .products{grid-template-columns:repeat(3,1fr)}
+    .cards{grid-template-columns:repeat(4,1fr)}
+    .tile h3,.product h4{margin:0 0 10px}
+    .product .tag{
+      display:inline-block;padding:6px 10px;border-radius:999px;
+      background:rgba(79,141,255,.14);color:#a7c5ff;font-size:12px;font-weight:700;margin-bottom:14px;
+    }
+
+    .catalog-item{
+      overflow:hidden;background:#0b1524;
+    }
+    .catalog-item img{width:100%;height:320px;object-fit:cover}
+    .catalog-copy{padding:20px}
+    .catalog-copy h3{margin:0 0 8px}
+    .catalog-copy p{margin:0;color:var(--muted)}
+
+    .form{display:grid;gap:14px}
+    .field{
+      width:100%;padding:16px 16px;border-radius:16px;
+      border:1px solid var(--line);background:rgba(255,255,255,.04);color:#fff;outline:none;
+    }
+    textarea.field{min-height:140px;resize:vertical}
+    .submit{
+      border:none;padding:16px 18px;border-radius:16px;
+      background:linear-gradient(135deg,var(--brand2),var(--brand));
+      color:#fff;font-weight:800;cursor:pointer;
+    }
+    .secondary-submit{
+      border:none;padding:16px 18px;border-radius:16px;
+      background:linear-gradient(135deg,var(--accent),#ffd66a);
+      color:#111;font-weight:800;cursor:pointer;
+    }
+    .note{
+      font-size:13px;color:#bcd0eb;background:rgba(79,141,255,.08);
+      border:1px solid rgba(79,141,255,.18);padding:12px 14px;border-radius:14px;
+    }
+    .success,.error{
+      display:none;padding:14px 16px;border-radius:14px;font-size:14px;
+    }
+    .success{background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.28);color:#bbf6d0}
+    .error{background:rgba(255,107,107,.12);border:1px solid rgba(255,107,107,.28);color:#ffc7c7}
+
+    .footer{
+      padding:30px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:14px;
+    }
+    .footer-grid{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+    .whatsapp{
+      position:fixed;right:20px;bottom:20px;z-index:100;
+      width:62px;height:62px;border-radius:50%;display:grid;place-items:center;
+      background:linear-gradient(135deg,#2ee071,var(--success));color:#fff;font-size:28px;font-weight:900;
+      box-shadow:0 16px 36px rgba(37,211,102,.35);
+    }
+    .fade-up{opacity:0;transform:translateY(22px);transition:all .8s ease}
+    .fade-up.show{opacity:1;transform:none}
+
+    @media (max-width:1100px){
+      .hero-grid,.head,.story,.contact-grid{grid-template-columns:1fr}
+      .hero-side{justify-self:stretch;width:100%}
+      .tiles,.products,.cards{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:760px){
+      .container{width:min(var(--max), calc(100% - 24px))}
+      .nav-links{display:none}
+      .hero-stats,.tiles,.products,.cards{grid-template-columns:1fr}
+      .hero{min-height:auto;padding:120px 0 70px}
+      h1{max-width:none}
+      .mini-gallery img{height:130px}
+      .section{padding:68px 0}
+      .catalog-item img{height:220px}
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="#" class="brand" data-nav="home">
+        <div class="mark">RA</div>
+        <div>
+          <h3>Rupam Autotech</h3>
+          <span>Premium CNC • VMC • HMC Tooling</span>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a href="#" data-nav="home" class="active">Home</a>
+        <a href="#" data-nav="about">About</a>
+        <a href="#" data-nav="products">Products</a>
+        <a href="#" data-nav="catalog">Catalog</a>
+        <a href="#" data-nav="contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="pill" href="tel:8130519859">Call Now</a>
+        <a class="pill primary" href="#" data-nav="contact">Get Quote</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page active" id="page-home">
+      <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container hero-grid">
+          <div class="fade-up">
+            <span class="eyebrow">Industrial Tooling Excellence | English + Hindi</span>
+            <h1>Precision tooling for modern manufacturing.</h1>
+            <p class="lead">
+              Rupam Autotech provides premium CNC, VMC and HMC tooling solutions with strong focus on accuracy, durability and output.
+              High precision boring systems, clamp systems, end mills, face milling and cutting tools — all presented in a modern enterprise-style website experience.
+            </p>
+            <div class="hero-actions">
+              <button class="btn primary" data-nav="products">Explore Products</button>
+              <button class="btn" data-nav="contact">Quick Inquiry / पूछताछ</button>
+            </div>
+            <div class="hero-stats">
+              <div class="stat"><strong>06BACPY9679J2ZP</strong><span>Registered GSTIN</span></div>
+              <div class="stat"><strong>8130519859</strong><span>Direct business contact</span></div>
+              <div class="stat"><strong>Faridabad</strong><span>Industrial operating base</span></div>
+            </div>
+          </div>
+
+          <div class="hero-side fade-up">
+            <div class="glass feature-card">
+              <h3>Trusted industrial partner</h3>
+              <p>Deals in all kinds of CNC, VMC &amp; HMC tooling, carbide end mill and brazed cutting tools.</p>
+              <div class="feature-list">
+                <div>High Precision / हाई प्रिसिजन</div>
+                <div>Strong Clamping &amp; Stable Performance</div>
+                <div>Maximum Productivity &amp; Long Tool Life</div>
+              </div>
+            </div>
+            <div class="glass mini-gallery">
+              <img src="https://ebay-be.glean.com/api/v1/downloadchatfile/3935b72d13804b129b0c724fb77e72ba" alt="Product brochure 1" />
+              <img src="https://ebay-be.glean.com/api/v1/downloadchatfile/dbe92e14257349d3b86604d4b6d5a5e9" alt="Product brochure 2" />
+              <img src="https://ebay-be.glean.com/api/v1/downloadchatfile/10408e26245f4b399ce71be5a77ce049" alt="Product brochure 3" />
+              <img src="https://ebay-be.glean.com/api/v1/downloadchatfile/f9c476a5aa1d4aac96619470406a30a2" alt="Product brochure 4" />
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="page" id="page-about">
+      <div class="subpage-hero">
+        <div class="container">
+          <div class="head fade-up">
+            <div>
+              <span class="kicker">About</span>
+              <h2>Industrial capability with business credibility.</h2>
+            </div>
+            <p>
+              Rupam Autotech ko is website mein ek trusted industrial tooling brand ke roop mein position kiya gaya hai — jo quality, precision aur customer responsiveness par built hai.
+            </p>
+          </div>
+        </div>
+      </div>
+      <section class="section" style="padding-top:20px">
+        <div class="container">
+          <div class="story">
+            <div class="panel fade-up">
+              <p>Company deals in CNC, VMC &amp; HMC tooling, carbide end mills, brazed cutting tools, boring systems, clamp systems and allied machining products.</p>
+              <div class="list">
+                <div><b>✓</b><span>Quality-driven product communication</span></div>
+                <div><b>✓</b><span>Strong visual identity based on brochure assets</span></div>
+                <div><b>✓</b><span>Lead-generation friendly contact flow</span></div>
+              </div>
+            </div>
+            <div class="panel fade-up">
+              <h3 style="margin-top:0;font-size:30px;">Business Snapshot</h3>
+              <p><strong>Company:</strong> Rupam Autotech</p>
+              <p><strong>GSTIN:</strong> 06BACPY9679J2ZP</p>
+              <p><strong>Phone:</strong> 8130519859</p>
+              <p><strong>Email:</strong> nirbhayyadav0080@gmail.com</p>
+              <p><strong>Address:</strong> Plot No. E-44, 1st Floor, Shyam Hotel Wali Gali, Sanjay Colony, Sector-24, Faridabad</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="page" id="page-products">
+      <div class="subpage-hero">
+        <div class="container">
+          <div class="head fade-up">
+            <div>
+              <span class="kicker">Products</span>
+              <h2>Product families organized for faster discovery.</h2>
+            </div>
+            <p>Product page mein key categories ko buyer-friendly format mein organize kiya gaya hai.</p>
+          </div>
+        </div>
+      </div>
+      <section class="section" style="padding-top:20px">
+        <div class="container">
+          <div class="products">
+            <div class="product fade-up"><span class="tag">Boring</span><h4>BT40 / BT50 Boring Heads</h4><p>Precision boring solutions for controlled boring operations.</p></div>
+            <div class="product fade-up"><span class="tag">Fine Boring</span><h4>EVN / NBJ Fine Boring</h4><p>Fine boring solutions designed for repeatable adjustment.</p></div>
+            <div class="product fade-up"><span class="tag">Micro Boring</span><h4>Large Micro Boring Head</h4><p>Micro boring setup for compact accuracy and stability.</p></div>
+            <div class="product fade-up"><span class="tag">Clamp</span><h4>A-Clamp System</h4><p>Reliable tool holding variants for machining support.</p></div>
+            <div class="product fade-up"><span class="tag">Clamp</span><h4>B-Clamp System</h4><p>Strong machining support with stable clamping performance.</p></div>
+            <div class="product fade-up"><span class="tag">Milling</span><h4>Chamfering End Mills</h4><p>VCM 30° and VCM 45° solutions for cleaner edge finishing.</p></div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="page" id="page-catalog">
+      <div class="subpage-hero">
+        <div class="container">
+          <div class="head fade-up">
+            <div>
+              <span class="kicker">Catalog</span>
+              <h2>Visual catalog and brochure-led presentation.</h2>
+            </div>
+            <p>Brochure-based visual catalog blocks for digital presentation.</p>
+          </div>
+        </div>
+      </div>
+      <section class="section" style="padding-top:20px">
+        <div class="container">
+          <div class="cards">
+            <div class="catalog-item fade-up">
+              <img src="https://ebay-be.glean.com/api/v1/downloadchatfile/f9c476a5aa1d4aac96619470406a30a2" alt="Main cover catalog" />
+              <div class="catalog-copy"><h3>Main Brand Brochure</h3><p>Primary identity board featuring company overview and tooling range.</p></div>
+            </div>
+            <div class="catalog-item fade-up">
+              <img src="https://ebay-be.glean.com/api/v1/downloadchatfile/3935b72d13804b129b0c724fb77e72ba" alt="Milling catalog" />
+              <div class="catalog-copy"><h3>Milling Solutions</h3><p>Chamfering end mills, end mills, U-drill systems and face milling solutions.</p></div>
+            </div>
+            <div class="catalog-item fade-up">
+              <img src="https://ebay-be.glean.com/api/v1/downloadchatfile/dbe92e14257349d3b86604d4b6d5a5e9" alt="Clamp catalog" />
+              <div class="catalog-copy"><h3>Clamp Systems</h3><p>A-clamp and B-clamp system variants for strong machining support.</p></div>
+            </div>
+            <div class="catalog-item fade-up">
+              <img src="https://ebay-be.glean.com/api/v1/downloadchatfile/10408e26245f4b399ce71be5a77ce049" alt="Boring catalog" />
+              <div class="catalog-copy"><h3>Boring Systems</h3><p>Boring heads, adaptors and micro boring solutions.</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="page" id="page-contact">
+      <div class="subpage-hero">
+        <div class="container">
+          <div class="head fade-up">
+            <div>
+              <span class="kicker">Contact</span>
+              <h2>Formspree + WhatsApp inquiry setup.</h2>
+            </div>
+            <p>Is version mein email lead aur WhatsApp inquiry dono ke liye setup ready hai.</p>
+          </div>
+        </div>
+      </div>
+
+      <section class="section" style="padding-top:20px">
+        <div class="container">
+          <div class="contact-grid">
+            <div class="panel fade-up">
+              <h3 style="margin-top:0;font-size:30px;">How it works</h3>
+              <div class="list">
+                <div><b>1</b><span>Form submit hoga to Formspree par lead jayegi</span></div>
+                <div><b>2</b><span>Lead email notification aapke inbox par aa sakti hai</span></div>
+                <div><b>3</b><span>WhatsApp button se same inquiry direct number par bheji ja sakti hai</span></div>
+              </div>
+              <div class="note" style="margin-top:18px;">
+                Replace `YOUR_FORMSPREE_ENDPOINT` with your real Formspree form URL.
+              </div>
+            </div>
+
+            <div class="panel fade-up">
+              <h3 style="margin-top:0;font-size:28px;">Send Inquiry</h3>
+              <form class="form" id="inquiryForm" action="https://formspree.io/f/xaqggjdb" method="POST">
+                <input class="field" name="name" id="name" type="text" placeholder="Your Name / आपका नाम *" required />
+                <input class="field" name="company" id="company" type="text" placeholder="Company Name / कंपनी का नाम" />
+                <input class="field" name="phone" id="phone" type="tel" placeholder="Phone Number / मोबाइल नंबर *" required />
+                <input class="field" name="email" id="email" type="email" placeholder="Email / ईमेल" />
+                <input class="field" name="product" id="product" type="text" placeholder="Product Interested In / कौन सा product चाहिए" />
+                <textarea class="field" name="message" id="message" placeholder="Requirement details / अपनी requirement लिखें *" required></textarea>
+                <input type="hidden" name="_subject" value="New Website Inquiry - Rupam Autotech" />
+                <input type="hidden" name="_captcha" value="false" />
+                <div class="error" id="errorBox">Please fill the required fields properly.</div>
+                <div class="success" id="successBox">Inquiry sent successfully.</div>
+                <button class="submit" type="submit">Send Inquiry on Email</button>
+                <button class="secondary-submit" type="button" id="whatsappBtn">Send on WhatsApp</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <strong style="display:block;color:#fff;margin-bottom:6px;">Rupam Autotech</strong>
+        <span>Premium website with Formspree and WhatsApp lead capture.</span>
+      </div>
+      <div>
+        <span>Lead email: subodh13@zohomail.in | WhatsApp: 9923456132</span>
+      </div>
+    </div>
+  </footer>
+
+  <a class="whatsapp" href="https://wa.me/919923456132" target="_blank" aria-label="WhatsApp">✆</a>
+
+  <script>
+    const navLinks = document.querySelectorAll('[data-nav]');
+    const pages = document.querySelectorAll('.page');
+    const topNavLinks = document.querySelectorAll('.nav-links a');
+
+    function showPage(pageId){
+      pages.forEach(page => page.classList.remove('active'));
+      const target = document.getElementById('page-' + pageId);
+      if(target) target.classList.add('active');
+
+      topNavLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('data-nav') === pageId);
+      });
+
+      window.scrollTo({top:0, behavior:'smooth'});
+      revealNow();
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e){
+        if(this.dataset.nav){
+          e.preventDefault();
+          showPage(this.dataset.nav);
+        }
+      });
+    });
+
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('show');
+        }
+      });
+    }, {threshold:.12});
+
+    function revealNow(){
+      document.querySelectorAll('.page.active .fade-up').forEach(el => observer.observe(el));
+    }
+    revealNow();
+
+    const form = document.getElementById('inquiryForm');
+    const errorBox = document.getElementById('errorBox');
+    const successBox = document.getElementById('successBox');
+    const whatsappBtn = document.getElementById('whatsappBtn');
+
+    form.addEventListener('submit', function(e){
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if(!name || !phone || !message){
+        e.preventDefault();
+        errorBox.style.display = 'block';
+        successBox.style.display = 'none';
+        return;
+      }
+
+      errorBox.style.display = 'none';
+      successBox.style.display = 'block';
+    });
+
+    whatsappBtn.addEventListener('click', function(){
+      const name = document.getElementById('name').value.trim();
+      const company = document.getElementById('company').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const product = document.getElementById('product').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if(!name || !phone || !message){
+        errorBox.style.display = 'block';
+        successBox.style.display = 'none';
+        return;
+      }
+
+      errorBox.style.display = 'none';
+
+      const text =
+`Hello Rupam Autotech,
+I want to send an inquiry.
+
+Name: ${name}
+Company: ${company || '-'}
+Phone: ${phone}
+Email: ${email || '-'}
+Product: ${product || '-'}
+Requirement: ${message}`;
+
+      const whatsappUrl = 'https://wa.me/919923456132?text=' + encodeURIComponent(text);
+      window.open(whatsappUrl, '_blank');
+    });
+  </script>
+</body>
+</html>
